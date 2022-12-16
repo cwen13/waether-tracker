@@ -14,37 +14,39 @@
       href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap"
       rel="stylesheet"
       />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"/>
-
     <!-- Imported our own custom stylesheet -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"/>    
     <link rel="stylesheet" href="./assets/css/style.css" />
-    <title>Weather Dashboard</title>
+    <title>Weather Forcast Dashboard</title>
   </head>
 
-  <body class="container is-fluid">
+  <body>
     <header>
-      <h1 class="title card-header-title is-justify-content-center">Weather Dashboard</h1>
+      <h1 class="title">Weather Dashboard</h1>
     </header>
-    <main>
+    <nav>
       <form class="box">
 	<div class="field">
-	  <div class="field">
-	    <label class="label">Location</label>
-	    <div class="control">
-	      <input id="startDate" class="input" type="text" placeholder="London, OH"/>
+	  <label class="label">City</label>
+	  <div class="control">
+	    <input class="input" type="city" placeholder="London, UK"/>
 	    </div>
 	  </div>
-	  <div class="field">
-	    <label class="label">Start date</label>
-	    <div class="control">
-	      <input id="endDate" class="input" type="date" placeholder="01/01/1970"/>
-	    </div>
-	  </div>
-	  
-	  <button class="button is-primary">Search Weather</button>
-	</div>
+	  <button class="button is-primary">Sign in</button>
 	</form>
+      <!-- previously searched for cities fomr localStorage go here -->
+      <ul class="prev-cities">
+      </ul>
+
+    </nav>
+    <main>
+      <!-- larger section above with the day's forcast informiaton -->
+      <section class="current-weather">
+      </section>
+      <!-- small cards showing the next five days -->
+      <section class=five-day">
+      </section>
     </main>
   </body>
 </html>
+      
