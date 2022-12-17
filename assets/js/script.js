@@ -14,6 +14,7 @@ let country = "US"
 
 //get state and city informaiton
 
+
 // resonse object
 //let geocode = {} 
 //let weather={}
@@ -21,9 +22,10 @@ let country = "US"
 // from geocogin
 let apiLatLon = `${apiBaseLatLon}q=${city},${state},${country}&appid=${apiKey}`;
 let geocode = getData(apiLatLon);
+console.log("Hello" + geocode);
+//  let latitude = geocode[0]{"lat"};
+//  let longitude = geocode[0]{"lon"};
 
-//let latitude = geocode[0]{"lat"};
-//let longitude = geocode[0]{"lon"};
 
 
 let apiWeather = `${apiBaseWeather}lat=${latitude}&lon=${longitude}&cnt=6&units=imperial&appid=${apiKey}`;
@@ -42,10 +44,16 @@ function getData(url) {
     });
 }
 
-let handlerGetData = (event) => {
+function handlerGetData(event){
+  event.preventDefault();
+  console.log("In the function");
   city = document.querySelector("#city").value;
-  state = document/querySelector("#state").value;
-  date = Date.parse(document.querySelector("#statDate").value);
-
+  state = document.querySelector("#state").value;
+  date = Date.parse(document.querySelector("#startDate").value);
   return 0;
 }
+
+
+let searchLocation = document.querySelector("#search");
+searchLocation.addEventListener('click', handlerGetData);
+console.log("passed the function");
