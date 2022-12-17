@@ -1,9 +1,15 @@
 
 
+body {
+  height: 75rem;
+}
+
 main {
-
   margin: 5rem 1rem 0rem 16rem;
+}
 
+form {
+  margin: 1rem;
 }
 
 
@@ -17,7 +23,12 @@ main {
   width: 15rem;
   position: fixed;
   z-index: 1;
-  background-color: purple;
   overflow-x: hidden;
   
 }
+
+.week-forcast {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  

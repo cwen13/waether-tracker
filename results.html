@@ -20,51 +20,87 @@
     <title>Weather Forcast Dashboard</title>
   </head>
 
-  <body>
+  <body class="has-background-grey-light">
     <header>
-      <h1 class="title">Weather Dashboard</h1>
+      <h1 class="title has-background-dark has-text-white">Weather Dashboard</h1>
     </header>
-    <nav class="side-bar">
+    <nav class="side-bar has-background-warning">
       <form class="box">
 	<div class="field">
 	  <label class="label">City</label>
 	  <div class="control">
-	    <input class="input" type="city" placeholder="London, UK"/>
-	    </div>
+	    <input class="input" type="city" placeholder="London"/>
 	  </div>
-	  <button class="button is-primary">Sign in</button>
-	</form>
+	</div>
+	<div class="field">
+	  <label class="label">State</label>
+	  <div class="control">
+	    <input id="state" class="input" type="text" placeholder="OH"/>
+	  </div>
+	</div>
+	
+	<button class="button is-primary">Sign in</button>
+      </form>
       <!-- previously searched for cities fomr localStorage go here -->
       <ul class="prev-cities">
-	
       </ul>
     </nav>
     <main>
       <!-- larger section above with the day's forcast informiaton -->
-      <section class="current-weather colummns">
-	<section id="today" class="coulumn box">
-	  date \n rain\n drip\n
+	<section id="today" class="box is-fll">
+	  <section class="date"></section>
+	  <section class="icon"></section>
+	  <section class="temp"></section>
+	  <section class="wind"></section>
+	  <section class="humidity"></section>
 	</section>
-	<section class="coulumns box">
-	</section>
-	
-	<section class="coulumns box">
-	</section>
-
-	<section class="coulumns box">
-	</section>
-	
-	<section class="coulumns box">
-	</section>
-	<section class="coulumns box">
+	<section class="week-forcast">
 	</section>
 
-      </section>
       <!-- small cards showing the next five days -->
       <section class=five-day">
       </section>
-      <script src="./assets/js/script.js"></script>
+      <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+      <script src="./assets/js/results.js"></script>
     </main>
   </body>
 </html>
       
+
+
+<!--	  <section class="box data-day-p1">
+	    <section class="date"></section>
+	    <section class="icon"></section>
+	    <section class="temp"></section>
+	    <section class="wind"></section>
+	    <section class="humidity"></section>
+	  </section>
+	  <section class="box">
+	    <section class="date"></section>
+	    <section class="icon"></section>
+	    <section class="temp"></section>
+	    <section class="wind"></section>
+	    <section class="humidity"></section>
+	  </section>
+	  <section class="box">
+	    <section class="date"></section>
+	    <section class="icon"></section>
+	    <section class="temp"></section>
+	    <section class="wind"></section>
+	    <section class="humidity"></section>
+	  </section>
+	  <section class="box">
+	    <section class="date"></section>
+	    <section class="icon"></section>
+	    <section class="temp"></section>
+	    <section class="wind"></section>
+	    <section class="humidity"></section>
+	  </section>
+	  <section class="box">
+	    <section class="date"></section>
+	    <section class="icon"></section>
+	    <section class="temp"></section>
+	    <section class="wind"></section>
+	    <section class="humidity"></section>
+	  </section>
+-->
