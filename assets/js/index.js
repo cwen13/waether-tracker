@@ -1,17 +1,14 @@
 
 // need to get openweather API and display 5 days frcast
 
-let searchBtn = $("search");
-let cityEl = $("city");
-let stateEl = $("state");
+let searchBtn = $("#search");
+let cityEl = $("#city");
+let stateEl = $("#state");
 
 let apiBase = "https://api.openweathermap.org/";
 let apiKey = "83a44da7964246bbf900a3b2168f29ce";
 let apiBaseWeather = apiBase + "data/2.5/forcast?";
 let apiBaseLatLon = apiBase + "geo/1.0/direct?";
-
-let city = "";
-let state = "";
 
 //get state and city informaiton
 
@@ -20,20 +17,7 @@ let state = "";
 //let weather;
 
 // from geocogin
-let apiLatLon = `${apiBaseLatLon}q=${city},${state}&limit=1&appid=${apiKey}`;
-let geocode = getData(apiLatLon);
-console.log("Hello" + geocode);
-let latitude = geocode[0]["lat"];
-let longitude = geocode[0]["lon"];
-
-
-
-let apiWeather = `${apiBaseWeather}lat=${latitude}&lon=${longitude}&cnt=6&units=imperial&appid=${apiKey}`;
-
-let weather = getData(apiWeather);
  
-localStorage.setItem("weather", JSON.stringify(weather));
-
 function getData(url) {
   return fetch(url)
     .then(function(response) {
@@ -44,16 +28,37 @@ function getData(url) {
     });
 }
 
+function getLatLon(geoJson, state) {
+  for (let i=0; i<geoJson.length; i++) {
+    console.log(geoJson[i]["state"]);
+    if (geoJson[i]["state"] == state) {
+      console.log(geoJson[i]["state"]);
+      return [geoJson[i]["lat"],geoJson[i]["lon"]];
+    }
+  }
+  return "State not found";
+}
+    
+
 function handlerGetData(event){
   event.preventDefault();
-  console.log("In the function");
-  city = cityEl.val();
-  state = stateEl.val();
+  let city = cityEl.val();
+  let state = stateEl.val();
+  console.log(city +", "+state);
+  let apiLatLon = `${apiBaseLatLon}q=${city},${state}&limit=10&appid=${apiKey}`;
+  console.log(apiLatLon);
+  let geocode = getData(apiLatLon);
+  
+  var latitude, longitude = getLatLon(geocode,state);
+  let apiWeather = `${apiBaseWeather}lat=${latitude}&lon=${longitude}&cnt=6&units=imperial&appid=${apiKey}`;
+  console.log(apiWeather);
+  let weather = getData(apiWeather);
+  
   date = Date.parse(document.querySelector("#startDate").value);
+  localStorage.setItem("weather", JSON.stringify(weather));
   return 0;
 }
 
 
-let searchLocation = document.querySelector("#search");
-searchLocation.addEventListener('click', handlerGetData);
+searchBtn[0].addEventListener('click', handlerGetData);
 console.log("passed the function");
