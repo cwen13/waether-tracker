@@ -1,5 +1,4 @@
 
-
 body {
   height: 75rem;
 }
@@ -27,8 +26,8 @@ form {
   
 }
 
-.week-forcast {
+.week-forecast {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  
+}  

@@ -11,6 +11,7 @@ let apiBase = "https://api.openweathermap.org/";
 let apiKey = "83a44da7964246bbf900a3b2168f29ce";
 let apiBaseWeather = apiBase + "data/2.5/forecast?";
 let apiBaseLatLon = apiBase + "geo/1.0/direct?";
+let apiBaseToday = apiBase + "data/2.5/weather?";
 
 //get state and city informaiton
 
@@ -51,25 +52,31 @@ function handlerGetData(event){
   
   let city = cityEl.val();
   let state = stateEl.val();
-  console.log(city +", "+state);
   let apiLatLon = `${apiBaseLatLon}q=${city},${state}&limit=10&appid=${apiKey}`;
-  console.log(apiLatLon);
    fetch(apiLatLon)
     .then(response => response.json())
     .then((data) =>{
       latlong = getLatLon(data,state);
-      console.log("LAt long : " + latlong);
       cityLatLong.push([city+","+state, latlong]);
       localStorage.setItem("cityLatLong", JSON.stringify(cityLatLong));
       let apiWeather = `${apiBaseWeather}lat=${latlong[0]}&lon=${latlong[1]}&units=imperial&appid=${apiKey}`;
-      console.log(apiWeather);
       fetch(apiWeather)
 	.then(response => response.json())
 	.then((data) => {
 	  localStorage.setItem("weatherResponse", JSON.stringify(data["list"]));
+	})
+	.then( () => {
+	  let apiToday = `${apiBaseToday}lat=${latlong[0]}&lon=${latlong[1]}&units=imperial&appid=${apiKey}`;
+	  fetch(apiToday)
+	    .then(response => response.json())
+	    .then( data => {
+	      console.log(data);
+	      localStorage.setItem("weatherToday", JSON.stringify(data));
+	    })
+	    .then(() => { window.location.href = "./results.html";});
 	});
-    })
-    .then(() => { window.location.href = "./results.html";});
+    });
+  
   return 0;
 }
 

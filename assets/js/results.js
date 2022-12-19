@@ -1,7 +1,7 @@
 
 
 let weatherData = JSON.parse(localStorage.getItem("weatherResponse"));
-console.log(weatherData);
+let weatherToday = JSON.parse(localStorage.getItem("weatherToday"));
 
 function pullStats(weatherEntry) {
   let entry = {date:"",
@@ -24,11 +24,11 @@ function pullStats(weatherEntry) {
 }
 function buildToday (weatherNow) {
   // reach inot global to get weatherToday
-  let date = $("#today .date").text("Date: "+weatherNow["date"]);
-  let icon = $("#today .icon").text(weatherNow["icon"]);
-  let temp = $("#today .temp").text("Temperature: "+weatherNow["temp"]);
-  let wind = $("#today .wind").text("wind speed: "+weatherNow["wind"]);
-  let humidity = $("#today .humidity").text("Humidity: "+weatherNow["humidity"]);
+  
+  let date = $("#today .date").text("Now: "+weatherNow["weather"][0]["icon"]);
+  let temp = $("#today .temp").text("Temperature: "+weatherNow["main"]["temp"]);
+  let wind = $("#today .wind").text("wind speed: "+weatherNow["wind"]["speed"]);
+  let humidity = $("#today .humidity").text("Humidity: "+weatherNow["main"]["humidity"]);
   return 0;
 }
 
@@ -55,7 +55,6 @@ function buildForecast (weather) {
   section.append(temp);
   section.append(wind);
   section.append(humidity);
-  console.log(section);
   weekForcast.append(section);
   return 0;
 }
@@ -63,9 +62,8 @@ function buildForecast (weather) {
 
 function main () {
   
- // buildToday(pullStats());
+  buildToday(weatherToday);
   for (let i=0;i<weatherData.length; i++) {
-    console.log(weatherData[i]);
     let readingTime = (weatherData[i]["dt_txt"]).split(" ")[1];
     if (readingTime === "12:00:00"){
       buildForecast(pullStats(weatherData[i]));
