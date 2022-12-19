@@ -90,16 +90,18 @@ function buildPrevCities(pCity) {
 }
 
 let handlePrevCity = (event) => {
-  let oldCity = event.target.text();
-  let oldCities = $(".prev-cities").cildren()
-  let cityLat, cityLon;
+  let oldCity = event.target.textContent;
+  let oldCities = JSON.parse(localStorage.getItem("cityLatLong"));
+  let cityLon, cityLat;
   for (let i=0;i<oldCities.length;i++) {
-    if (oldCity === oldCities[i][0]) {
+    if (oldCity === oldCities[i][0].split(",")[0]) {
       cityLat = oldCities[i][1][0];
       cityLon = oldCities[i][1][1];
     }
   }
 
+  console.log(cityLat +" "+cityLon);
+  
   let apiWeather = `${apiBaseWeather}lat=${cityLat}&lon=${cityLon}&units=imperial&appid=${apiKey}`;
   fetch(apiWeather)
     .then(response => response.json())
@@ -107,14 +109,14 @@ let handlePrevCity = (event) => {
       localStorage.setItem("weatherResponse", JSON.stringify(data["list"]));
     })
     .then( () => {
-      let apiToday = `${apiBaseToday}lat=${latlong[0]}&lon=${latlong[1]}&units=imperial&appid=${apiKey}`;
+      let apiToday = `${apiBaseToday}lat=${cityLat}&lon=${cityLon}&units=imperial&appid=${apiKey}`;
       fetch(apiToday)
 	.then(response => response.json())
 	.then( data => {
 	  console.log(data);
 	  localStorage.setItem("weatherToday", JSON.stringify(data));
 	})
-	.then(() => { window.location.href = "./results.html";});
+	.then(() => { window.location.reload();});
     });
   return 0;
 
@@ -140,5 +142,5 @@ function main () {
 
 
 main();
-
+$("li").on("click",handlePrevCity);
 
