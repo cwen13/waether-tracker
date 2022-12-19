@@ -1,3 +1,8 @@
+let apiBase = "https://api.openweathermap.org/";
+let apiKey = "83a44da7964246bbf900a3b2168f29ce";
+let apiBaseWeather = apiBase + "data/2.5/forecast?";
+let apiBaseLatLon = apiBase + "geo/1.0/direct?";
+let apiBaseToday = apiBase + "data/2.5/weather?";
 
 
 let weatherData = JSON.parse(localStorage.getItem("weatherResponse"));
@@ -78,10 +83,41 @@ function buildPrevCities(pCity) {
   let cityEntry = $("<li>");
   let cityEl = $("<button>");
   cityEl.text(city);
-  cityEl.attr("class", "button is-info coulmns");
+  cityEl.attr("class", "button is-info city-list");
   
   $(".prev-cities").append(cityEntry.append(cityEl));
   return 0;
+}
+
+let handlePrevCity = (event) => {
+  let oldCity = event.target.text();
+  let oldCities = $(".prev-cities").cildren()
+  let cityLat, cityLon;
+  for (let i=0;i<oldCities.length;i++) {
+    if (oldCity === oldCities[i][0]) {
+      cityLat = oldCities[i][1][0];
+      cityLon = oldCities[i][1][1];
+    }
+  }
+
+  let apiWeather = `${apiBaseWeather}lat=${cityLat}&lon=${cityLon}&units=imperial&appid=${apiKey}`;
+  fetch(apiWeather)
+    .then(response => response.json())
+    .then((data) => {
+      localStorage.setItem("weatherResponse", JSON.stringify(data["list"]));
+    })
+    .then( () => {
+      let apiToday = `${apiBaseToday}lat=${latlong[0]}&lon=${latlong[1]}&units=imperial&appid=${apiKey}`;
+      fetch(apiToday)
+	.then(response => response.json())
+	.then( data => {
+	  console.log(data);
+	  localStorage.setItem("weatherToday", JSON.stringify(data));
+	})
+	.then(() => { window.location.href = "./results.html";});
+    });
+  return 0;
+
 }
 
 function main () {
