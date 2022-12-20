@@ -2,6 +2,8 @@
 header {
   position: fixed;
   width: 100%;
+  top: 0;
+  z-index: 3;
 }
 
 body {
@@ -11,6 +13,7 @@ body {
 
 main {
   margin: 5rem 1rem 0rem 16rem;
+  padding: 5.5rem 0rem;
 }
 
 h2 {
@@ -48,7 +51,7 @@ form {
   position: fixed;
   z-index: 1;
   overflow-x: hidden;
-  margin: 10rem 0rem 0rem 0rem;  
+  margin: 5.5rem 0rem 0rem 0rem;  
 }
 
 .week-forecast {
