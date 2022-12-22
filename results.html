@@ -28,12 +28,12 @@
 	<div class="field">
 	  <label class="label">City</label>
 	  <div class="control">
-	    <input class="input" type="city" placeholder="London"/>
+	    <input id="city" class="input" type="city" placeholder="London"/>
 	  </div>
 	</div>
 	<div class="field">
 	  <label class="label">State</label>
-	  	    <div class="select state">
+	  <div class="select state">
 	      <select id="selectState">
 		<option>Alabama</option>
 		<option>Alaska</option>
@@ -88,7 +88,7 @@
 	      </select>
 	    </div>	     
 	</div>
-	<button class="button is-primary">Search</button>
+	<button id="search" class="button is-primary">Search</button>
       </form>
       <!-- previously searched for cities fomr localStorage go here -->
       <ul class="prev-cities">
@@ -96,7 +96,7 @@
     </nav>
     <main>
       <!-- larger section above with the day's forecast informiaton -->
-	<section id="today" class="box is-fll">
+	<section id="today" class="box is-full has-background-info has-text-black">
 	  <section class="date"></section>
 	  <section class="temp"></section>
 	  <section class="wind"></section>
