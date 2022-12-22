@@ -34,22 +34,25 @@ function handlerGetData(event){
   
   let city = cityEl.val();
   let state = stateEl.options[stateEl.selectedIndex].value;
+  let cityState = city+","+state;
   let apiLatLon = `${apiBaseLatLon}q=${city},${state}&limit=10&appid=${apiKey}`;
    fetch(apiLatLon)
     .then(response => response.json())
     .then((data) =>{
       latlong = getLatLon(data,state);
-      if (cityLatLong.length === 0)  {
-	cityLatLong.push([city+","+state, latlong]);
+      if (cityLatLong.length === 0 ) {
+	cityLatLong.push([cityState,latlong]);
       } else {
 	for (let i=0; i<cityLatLong.length; i++) {
-	  if (city == cityLatLong[i][0].split(",")[0]) {
+	  if (cityState == cityLatLong[i][0]) {
 	    break;
-	  } else {
-	    cityLatLong.push([city+","+state, latlong]);
+	  }
+	  if (i+1 === cityLatLong.length) {
+	    cityLatLong.push([cityState, latlong]);
 	  }
 	}
       }
+
       localStorage.setItem("cityLatLong", JSON.stringify(cityLatLong));
       let apiWeather = `${apiBaseWeather}lat=${latlong[0]}&lon=${latlong[1]}&units=imperial&appid=${apiKey}`;
       fetch(apiWeather)
