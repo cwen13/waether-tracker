@@ -25,6 +25,6 @@ The site can be found [here.](https://cwen13.github.io/waether-tracker/)
 
 ![Screen shot of the results page showing a five day forcast](./assets/images/screenshot-WeatherDash.png)
 
-## Liscense
+## License
 
 MIT 
