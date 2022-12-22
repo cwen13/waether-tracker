@@ -136,8 +136,6 @@ function getLatLon(geoJson, state) {
   }
   return console.log("State not found");
 }
-    
-
 
 function handlerGetData(event){
   event.preventDefault();
@@ -182,19 +180,16 @@ function handlerGetData(event){
 	    })
 	    .then(() => { window.location.href = "./results.html";});
 	});
-    });
-  
+    });  
   return 0;
 }
 
 function main () {
-
   if (prevCities) {
     for (let i=0; i<prevCities.length; i++){
       buildPrevCities(prevCities[i]);
     }
   }
-  
   buildToday(weatherToday);
   for (let i=0;i<weatherData.length; i++) {
     let readingTime = (weatherData[i]["dt_txt"]).split(" ")[1];
@@ -203,7 +198,6 @@ function main () {
     }
   }
 }
-
 
 main();
 $("li").on("click",handlePrevCity);

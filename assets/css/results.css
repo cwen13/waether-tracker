@@ -25,10 +25,6 @@ form {
 }
 
 .prev-cities > li {
- /*  display:flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;*/
   margin: 1rem 1rem 1rem 1rem;
 }
 
@@ -43,7 +39,6 @@ form {
   font-size: 5rem;
   font-weight: bolder;
 }
-
 
 .side-bar {
   height: 100%;
@@ -60,3 +55,4 @@ form {
   justify-content: space-evenly;
   flex-wrap: wrap;
 }  
+

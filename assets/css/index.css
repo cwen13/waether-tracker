@@ -1,7 +1,6 @@
 * {
 }
 
-
 body {
   width: 100%;
   min-height: 75rem;
@@ -13,6 +12,7 @@ main {
   justify-content: center;
   align-items: center;
 }
+
 .entries {
   margin: 2rem;
   max-width: 75rem;

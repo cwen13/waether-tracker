@@ -1,5 +1,0 @@
-
-$(".weekforcast")
-
-function buildEntry (weather) {
-  

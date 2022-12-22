@@ -1,6 +1,5 @@
 
 // need to get openweather API and display 5 days frcast
-
 let searchBtn = $("#search");
 let cityEl = $("#city");
 let stateEl = document.getElementById("selectState");
@@ -23,8 +22,6 @@ function getLatLon(geoJson, state) {
   }
   return console.log("State not found");
 }
-    
-
 
 function handlerGetData(event){
   event.preventDefault();
@@ -69,10 +66,9 @@ function handlerGetData(event){
 	    })
 	    .then(() => { window.location.href = "./results.html";});
 	});
-    });
-  
+    });  
   return 0;
 }
 
-
 searchBtn[0].addEventListener('click', handlerGetData);
+
