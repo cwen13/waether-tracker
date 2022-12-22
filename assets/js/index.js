@@ -3,7 +3,7 @@
 
 let searchBtn = $("#search");
 let cityEl = $("#city");
-let stateEl = $("#state");
+let stateEl = document.getElementById("selectState");
 let latlong;
 let cityLatLong = [];
 
@@ -14,24 +14,6 @@ let apiBaseLatLon = apiBase + "geo/1.0/direct?";
 let apiBaseToday = apiBase + "data/2.5/weather?";
 
 //get state and city informaiton
-
-// resonse object
-//let geocode;  
-//let weather;
-
-// from geocogin
- 
-// function getData(url) {
-//   fetch(url)
-//     .then(function(response) {
-//       return response.json();
-//     })
-//     .then(function (data) {
-//       geocode = data;
-//     }).then(function(gJson)
-// 	    latitude, longitude = getLatLon(gJson, city))}
-// }
-// 
 function getLatLon(geoJson, state) {
   for (let i=0; i<geoJson.length; i++) {
     if (geoJson[i]["state"] == state) {
@@ -51,13 +33,23 @@ function handlerGetData(event){
   }
   
   let city = cityEl.val();
-  let state = stateEl.val();
+  let state = stateEl.options[stateEl.selectedIndex].value;
   let apiLatLon = `${apiBaseLatLon}q=${city},${state}&limit=10&appid=${apiKey}`;
    fetch(apiLatLon)
     .then(response => response.json())
     .then((data) =>{
       latlong = getLatLon(data,state);
-      cityLatLong.push([city+","+state, latlong]);
+      if (cityLatLong.length === 0)  {
+	cityLatLong.push([city+","+state, latlong]);
+      } else {
+	for (let i=0; i<cityLatLong.length; i++) {
+	  if (city == cityLatLong[i][0].split(",")[0]) {
+	    break;
+	  } else {
+	    cityLatLong.push([city+","+state, latlong]);
+	  }
+	}
+      }
       localStorage.setItem("cityLatLong", JSON.stringify(cityLatLong));
       let apiWeather = `${apiBaseWeather}lat=${latlong[0]}&lon=${latlong[1]}&units=imperial&appid=${apiKey}`;
       fetch(apiWeather)
@@ -70,7 +62,6 @@ function handlerGetData(event){
 	  fetch(apiToday)
 	    .then(response => response.json())
 	    .then( data => {
-	      console.log(data);
 	      localStorage.setItem("weatherToday", JSON.stringify(data));
 	    })
 	    .then(() => { window.location.href = "./results.html";});

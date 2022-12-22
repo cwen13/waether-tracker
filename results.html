@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"/>    
     <link rel="stylesheet" href="./assets/css/results.css" />
     <title>Weather Forecast Dashboard</title>
-  </head>
+  </head>  
   <body class="has-background-grey-light">
     <header class="has-background-dark">
       <h1 class="title has-text-white">Weather Dashboard</h1>
@@ -33,12 +33,62 @@
 	</div>
 	<div class="field">
 	  <label class="label">State</label>
-	  <div class="control">
-	    <input id="state" class="input" type="text" placeholder="OH"/>
-	  </div>
+	  	    <div class="select state">
+	      <select id="selectState">
+		<option>Alabama</option>
+		<option>Alaska</option>
+		<option>Arizona</option>
+		<option>Arkansas</option>
+		<option>California</option>
+		<option>Colorado</option>
+		<option>Connecticut</option>
+		<option>Delaware</option>
+		<option>Florida</option>
+		<option>Georgia</option>
+		<option>Hawaii</option>
+		<option>Idaho</option>
+		<option>Illinois</option>
+		<option>Indiana</option>
+		<option>Iowa</option>
+		<option>Kansas</option>
+		<option>Kentucky</option>
+		<option>Louisiana</option>
+		<option>Maine</option>
+		<option>Maryland</option>
+		<option>Massachusetts</option>
+		<option>Michigan</option>
+		<option>Minnesota</option>
+		<option>Mississippi</option>
+		<option>Missouri</option>
+		<option>Montana</option>
+		<option>Nebraska</option>
+		<option>Nevada</option>
+		<option>New Hampshire</option>
+		<option>New Jersey</option>
+		<option>New Mexico</option>
+		<option>New York</option>
+		<option>North Carolina</option>
+		<option>North Dakota</option>
+		<option>Ohio</option>
+		<option>Oklahoma</option>
+		<option>Oregon</option>
+		<option>Pennsylvania</option>
+		<option>Rhode Island</option>
+		<option>South Carolina</option>
+		<option>South Dakota</option>
+		<option>Tennessee</option>
+		<option>Texas</option>
+		<option>Utah</option>
+		<option>Vermont</option>
+		<option>Virginia</option>
+		<option>Washington</option>
+		<option>West Virginia</option>
+		<option>Wisconsin</option>
+		<option>Wyoming</option>
+	      </select>
+	    </div>	     
 	</div>
-	
-	<button class="button is-primary">Sign in</button>
+	<button class="button is-primary">Search</button>
       </form>
       <!-- previously searched for cities fomr localStorage go here -->
       <ul class="prev-cities">
