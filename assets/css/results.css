@@ -24,6 +24,12 @@ form {
   margin: 1rem;
 }
 
+footer {
+  display: flex;
+  flex-direction:row;
+  justify-content: center;
+}
+
 .prev-cities > li {
   margin: 1rem 1rem 1rem 1rem;
 }
@@ -35,7 +41,7 @@ form {
 
 .title {
   text-align: center;
-  padding: 2.5rem 0rem;
+  padding: 1.5rem 0rem;
   font-size: 5rem;
   font-weight: bolder;
 }
@@ -46,7 +52,7 @@ form {
   position: fixed;
   z-index: 1;
   overflow-x: hidden;
-  margin: 5.5rem 0rem 0rem 0rem;  
+  margin: 3.5rem 0rem 0rem 0rem;  
 }
 
 .week-forecast {
